@@ -1,7 +1,12 @@
 @extends('front.templates.base')
 
 @section('mainContent')
-
-    <h1>HOME PAGE</h1>
-
+    <div class="container">
+        @foreach ($Comics as $link)
+            <div class="container_fumetto">
+                <img src="{{ $link['thumb'] }}">
+                <span>{{ $link['series']}}</span>
+            </div>
+        @endforeach
+    </div>
 @endsection

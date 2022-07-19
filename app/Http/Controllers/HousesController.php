@@ -15,7 +15,6 @@ class HousesController extends Controller
     public function index()
     {
         $Comics = Comic::all();
-        // dd($Comics);
         return view('admin.houses.index', compact('Comics'));
     }
 
@@ -38,11 +37,16 @@ class HousesController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        // dd($request->all());
         $formData = $request->all();
         $fumetto = new Comic();
         $fumetto->title = $formData['title'];
         $fumetto->description = $formData['description'];
+        $fumetto->thumb = $formData['thumb'];
         $fumetto->price = $formData['price'];
+        $fumetto->series = $formData['series'];
+        $fumetto->sale_date = $formData['sale_date'];
+        $fumetto->type = $formData['type'];
     }
 
     /**

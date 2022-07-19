@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comic;
 
 class HomeController extends Controller
 {
     public function index(){
-        return view('front.home');
+        $Comics = Comic::all();
+        // dd($Comics);
+        return view('front.home', compact('Comics'));
     }
 
     public function about(){
