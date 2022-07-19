@@ -8,13 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        @foreach ($Comics as $link)
-            <div class="container_fumetto">
-                <img src="{{ $link['thumb'] }}">
-                <span>{{ $link['series']}}</span>
-            </div>
-        @endforeach
-    </div>
+    @yield('mainContent')
 </body>
 </html>
