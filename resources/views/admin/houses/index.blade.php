@@ -1,9 +1,6 @@
 @extends('admin.templates.base')
-
-
 @section('mainContent')
-    <main>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>id</th>
@@ -14,6 +11,7 @@
                     <th>series</th>
                     <th>sale_date</th>
                     <th>type</th>
+                    <th colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +25,22 @@
                         <td>{{ $item->series}} </td>
                         <td>{{ $item->sale_date}} </td>
                         <td>{{ $item->type}} </td>
+                        <td>
+                            <a href="{{ route('houses.show', ['house' => $item])}}" class="btn btn-primary">View</a>
+                        </td>
+                        <td>
+                            <a href="{{ route('houses.edit', ['house' => $item])}}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-danger">Delete</a>
+                            {{-- <form action="{{ route('houses.destroy', ['house' => $Comics])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form> --}}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </main>
 @endsection

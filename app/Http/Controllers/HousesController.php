@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use Ramsey\Uuid\Generator\CombGenerator;
 
 class HousesController extends Controller
 {
@@ -47,6 +48,13 @@ class HousesController extends Controller
         $fumetto->series = $formData['series'];
         $fumetto->sale_date = $formData['sale_date'];
         $fumetto->type = $formData['type'];
+        $fumetto->save();
+
+        // $fumetto = Comic::create($formData);    questa riga equivale a quello scritto nelle righe fra 42 e 51
+
+        return redirect()->route('houses.show', ['house' => $fumetto]);
+        // dove 'house' lo trovi in php artisan route:list
+        // return redirect()->route('houses.index');
     }
 
     /**
@@ -77,8 +85,15 @@ class HousesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Comics = Comic::find($id);
+        return view('admin.houses.edit', compact('Comics'));
+        // http://127.0.0.1:8000/houses/56/edit
     }
+
+    // public function edit(Comic $Comics)
+    // {
+    //     return view('admin.houses.edit', compact('Comics'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -87,9 +102,14 @@ class HousesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, Comic $Comics)
     {
-        //
+        $formData = $request->all();
+        $Comics->update($formData);
+        // se abbiamo definito le fillable in Comic
+        return redirect()->route('houses.show', ['house' => $Comics]);
     }
 
     /**
@@ -102,4 +122,10 @@ class HousesController extends Controller
     {
         //
     }
+
+    // public function destroy(Comic $Comics)
+    // {
+    //     $Comics->delete();
+    //     return redirect()->route('house.index');
+    // }
 }
