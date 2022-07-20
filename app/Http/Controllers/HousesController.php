@@ -104,12 +104,15 @@ class HousesController extends Controller
      */
 
 
-    public function update(Request $request, Comic $Comics)
+    public function update(Request $request, Comic $house)
     {
         $formData = $request->all();
-        $Comics->update($formData);
+        $house->update($formData);
         // se abbiamo definito le fillable in Comic
-        return redirect()->route('houses.show', ['house' => $Comics]);
+        // dd($Comics);
+        return redirect()->route('houses.show', ['house' => $house->id]);
+        // dd($Comics->toArray());
+        // return redirect('/houses/' . $house->id);
     }
 
     /**

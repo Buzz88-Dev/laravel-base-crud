@@ -6,7 +6,7 @@
     <form action="{{ route('houses.update', ['house' => $Comics]) }}" method="post">
         {{-- serve il metodo put --}}
         {{-- tramite una direttiva aggiungo il put --}}
-        @method('put')
+        @method('PUT')
         @csrf
         <div>
             <label class="form-label" for="title">Title</label>
